@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Line Chart Visualization</title>
+    <script src="d3.js"></script>
+</head>
+<body>
+    <div id="chart"></div>
+    <script src="charts.js"></script>
+    <!-- Script to create line charts -->
+    <script>
+
+
+        // // Function to create line chart
+        // function lineChart(data, svg, fillColor) {
+        //     var svg = d3.select("#chart")
+        //                 .append("svg")
+        //                 .attr("width",200)
+        //                 .attr("height",200)
+        //     var yScale = d3.scaleLinear().domain([0,20]).range([0,200]);
+
+        //     var ourLine = d3.line()
+        //                     .x(function(d,i){return i\*10})
+        //                     .y(function(d,i){return yScale(d.x)});
+
+        //     // svg.append("path")
+        //     //     .datum(data)
+        //     //     .attr("d",ourLine)
+
+        //     svg.append("path")
+        //         .data([data])
+        //         .attr("d",ourLine)
+        //         .attr("fill","none")
+        //         .attr("stroke","black")
+
+            
+        // }
+
+        // lineChart(set1)
+
+
+        function lineChart(data, svg, fillColor) {
+            // Define yScale
+            var yScale = d3.scaleLinear().domain([0, 20]).range([0, 200]);
+
+            // Define line for x values
+            var xLine = d3.line()
+                .x(function(d, i) { return i * 10; })
+                .y(function(d, i) { return yScale(d.x); });
+
+            // Define line for y values
+            var yLine = d3.line()
+                .x(function(d, i) { return i * 10; })
+                .y(function(d, i) { return yScale(d.y); });
+
+            // Append x line
+            svg.append("path")
+                .datum(data)
+                .attr("d", xLine)
+                .attr("fill", "none")
+                .attr("stroke", "red");
+
+            // Append y line
+            svg.append("path")
+                .datum(data)
+                .attr("d", yLine)
+                .attr("fill", "none")
+                .attr("stroke", "blue")
+                .attr("opacity", 0.3);
+        }
+
+        // Create line charts for each dataset
+        var svg1 = d3.select("#chart").append("svg").attr("width", 200).attr("height", 200);
+        lineChart(set1, svg1);
+
+        var svg2 = d3.select("#chart").append("svg").attr("width", 200).attr("height", 200);
+        lineChart(set2, svg2);
+
+        var svg3 = d3.select("#chart").append("svg").attr("width", 200).attr("height", 200);
+        lineChart(set3, svg3);
+
+        var svg4 = d3.select("#chart").append("svg").attr("width", 200).attr("height", 200);
+        lineChart(set4, svg4);
+    </script>
+</body>
+</html>
